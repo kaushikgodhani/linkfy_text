@@ -44,7 +44,7 @@ class _AppState extends State<App> {
       "types": [LinkType.hashTag]
     },
     {
-      "text": "O4. This text contains a https://www.amazon.es/",
+      "text": "O4. This text contains a https://www.amazon.es/Dos-almas-amor-verdadero-ER%C3%93TICA/dp/841793832X/",
       "types": [LinkType.url]
     },
     {
