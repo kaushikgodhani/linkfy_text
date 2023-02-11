@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:linkfy_text/linkfy_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,8 +44,8 @@ class _AppState extends State<App> {
       "types": [LinkType.hashTag]
     },
     {
-      "text": "O4. This text contains a @user tag",
-      "types": [LinkType.userTag]
+      "text": "O4. This text contains a https://www.amazon.es/",
+      "types": [LinkType.url]
     },
     {
       "text": "O5. This text contains a phone number: (555) 444 2223",
@@ -107,8 +108,18 @@ class _AppState extends State<App> {
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                     ),
-                    onTap: (link) => showSnackbar(
-                        "link pressed: ${link.value!}. Type: ${link.type}"),
+                    onTap: (link) async {
+                      showSnackbar(
+                            "link pressed: ${link.value!}. Type: ${link.type}");
+                      if(link.type == LinkType.url) {
+                        await launchUrl(
+                          Uri.parse(link.value!),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    // onTap: (link) => showSnackbar(
+                    //     "link pressed: ${link.value!}. Type: ${link.type}"),
                   )),
           ],
         ),
